@@ -1,15 +1,13 @@
 # Parent class for all graders
 from os import listdir
 from os.path import isfile, join
-from utils.colors import bcolors
 
 class Grader:
 
 	verbose = False
 	enable = False
 	
-	# Printing severity
-	HIGH = 1 	# Printed even if not verbose
+	HIGH = 1 	
 	LOW = 0
 
 	def printSev(self, sev, string, end = "\n"):
@@ -42,7 +40,7 @@ class Grader:
 
 		for lineNum, lines in enumerate(zip(lines1Clean, lines2Clean), 1):
 			if(lines[0] != lines[1]):
-				self.printSev(self.LOW, bcolors.FAIL + "Mismatch at line " + str(lineNum) +  "." + bcolors.ENDC)
+				self.printSev(self.LOW,"Mismatch at line " + str(lineNum) +  ".")
 				match &= False
 
 		return match
