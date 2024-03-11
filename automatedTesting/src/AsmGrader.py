@@ -1,5 +1,4 @@
 # Assembler Grader class
-from utils.colors import bcolors
 from Grader import Grader
 import os
 
@@ -28,7 +27,7 @@ class AsmGrader(Grader):
 		os.chdir(self.ASM_RUN_DIR)  
 		
 		for test in tests:
-			self.printSev(self.HIGH, bcolors.OKCYAN + "Running " + test + bcolors.ENDC)
+			self.printSev(self.HIGH, "Running " + test )
 			errors = os.popen("./run < " + "../automatedTesting/tests/assembly/" + self.ASM_ERROR_DIR + "/" + test).read() 
 			self.printSev(self.HIGH, errors, end="")
 			self.printSev(self.HIGH, "============================================\n")
@@ -50,10 +49,10 @@ class AsmGrader(Grader):
 			expectedBin = os.popen("cat " + "../automatedTesting/tests/assembly/" + expDir + "/" + test).readlines() 
 
 			if self.diff(generatedBin, expectedBin):
-				self.printSev(self.HIGH, bcolors.OKGREEN + "[PASSED]" + bcolors.ENDC + " " + test)
+				self.printSev(self.HIGH, "[PASSED]" + " " + test)
 				passCount += 1
 			else:
-				self.printSev(self.HIGH, bcolors.FAIL + "[FAILED]" + bcolors.ENDC + " " + test)
+				self.printSev(self.HIGH, "[FAILED]"+ " " + test)
 			totalCount += 1
 
 		os.chdir(curDir)
@@ -63,18 +62,18 @@ class AsmGrader(Grader):
 	def grade(self):
 		res = None
 		if(self.enable):
-			self.printSev(self.HIGH, bcolors.WARNING + bcolors.BOLD + "==================================================" + bcolors.ENDC)
-			self.printSev(self.HIGH, bcolors.WARNING + bcolors.BOLD + "================ TESTING ASSEMBLER ===============" + bcolors.ENDC)
-			self.printSev(self.HIGH, bcolors.WARNING + bcolors.BOLD + "==================================================" + bcolors.ENDC)
+			self.printSev(self.HIGH,"==================================================" )
+			self.printSev(self.HIGH,"================ TESTING ASSEMBLER ===============" )
+			self.printSev(self.HIGH,"==================================================" )
 			self.printSev(self.HIGH, "")
 			
-			self.printSev(self.HIGH, bcolors.OKBLUE + bcolors.BOLD + "Runing simple tests" + bcolors.ENDC)
+			self.printSev(self.HIGH, "Runing simple tests" )
 			simplePass, simpleTotal = self.handleBin(self.ASM_SIMPLE_DIR, self.BIN_SIMPLE_DIR)
 
-			self.printSev(self.HIGH, bcolors.OKBLUE + bcolors.BOLD + "\nRunning hard tests" + bcolors.ENDC)
+			self.printSev(self.HIGH,"\nRunning hard tests" )
 			hardPass, hardTotal = self.handleBin(self.ASM_HARD_DIR, self.BIN_HARD_DIR)
 			
-			self.printSev(self.HIGH, bcolors.OKBLUE + bcolors.BOLD + "Running error tests" + bcolors.ENDC)
+			self.printSev(self.HIGH, "Running error tests")
 			self.handleErrorGen()  
 
 			res = [
