@@ -6,9 +6,9 @@ Creating a binary assembler and a simulator(later on) for testing it
 
 CSE112 - Computer Organisation(Section-B)
 
+Satyam
 Rahul Dabas
 Vikas Meena
-Satyam
 Yuvraj Verma
 
 #Automation
